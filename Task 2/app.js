@@ -1,8 +1,5 @@
 const Transform = {
-    isEmptyObj: function(obj){
-        return Object.keys(obj).length === 0;
-    },
-
+    
     stringifyValue: function(val){
         if(typeof val === 'object' || Array.isArray(val)) return JSON.stringify(val);
         else return String(val);
@@ -40,28 +37,12 @@ const Transform = {
         if(Array.isArray(val1) && Array.isArray(val2)) return val1.concat(val2);
         if(Array.isArray(val1)) return val1.concat([val2]);
         if(Array.isArray(val2)) return [val1].concat(val2);
-        if(typeof val1 === 'object'){
-            if(this.isEmptyObj(val1)) val1 = 0;
-            else val1 = 1; 
-        }
-        if(typeof val2 === 'object'){
-            if(this.isEmptyObj(val2)) val2 = 0;
-            else val2 = 1; 
-        }
+        
         if(typeof val1==='number' && typeof val2==='number') return val1 + val2;
         if(typeof val1==='bigint' && typeof val2==='bigint') return val1 + val2;
         if(typeof val1==='string' && typeof val2==='string') return val1 + val2;
-        if(typeof val1==='boolean' && typeof val2==='boolean') return val1 + val2;
-        if(typeof val1 === 'number' && typeof val2 === 'boolean') return val1 + Number(val2);
-        if(typeof val1 === 'boolean' && typeof val2 === 'number') return Number(val1) + val2;
-        if(typeof val1==='number' && typeof val2==='string') return val1 + this.convertToNumber(val2);
-        if(typeof val1==='string' && typeof val2==='number') return this.convertToNumber(val1) + val2;
-        if(typeof val1==='boolean' && typeof val2==='string') return val1 + val2;
-        if(typeof val1==='string' && typeof val2==='boolean') return val1 + val2;
-        if(typeof val1 === 'string' && typeof val2 === 'bigint') return val1 + this.stringifyValue(val2);
-        if(typeof val1 === 'bigint' && typeof val2 === 'string') return this.stringifyValue(val1) + val2;
-        if(typeof val1 === 'bigint' && typeof val2 === 'boolean') return val1 + BigInt(val2);
-        if(typeof val1 === 'boolean' && typeof val2 === 'bigint') return BigInt(val1) + val2;
+        if(typeof val1==='boolean' && typeof val2==='boolean') return val1 || val2;
+        
 
 
         else throw new Error("Impossible operation.");
@@ -92,17 +73,5 @@ console.log(Transform.addValues([1, 2], 3));
 console.log(Transform.addValues(1, [2, 3])); 
 console.log(Transform.addValues(2, 3)); 
 console.log(Transform.addValues("hello ", "world")); 
-console.log(Transform.addValues(true, false)); 
-console.log(Transform.addValues(2, true)); 
-console.log(Transform.addValues(true, 2)); 
-console.log(Transform.addValues(2, "3")); 
-console.log(Transform.addValues("2", 3));
-console.log(Transform.addValues(true, "2")); 
-console.log(Transform.addValues("2", true)); 
-console.log(Transform.addValues("2", 3n)); 
-console.log(Transform.addValues(2n, "3")); 
-console.log(Transform.addValues(2n, true)); 
-console.log(Transform.addValues(true, 2n));
-console.log(Transform.addValues({ a: 1 }, { b: 2 }));
-console.log(Transform.addValues({}, { a: 1, b: 2 }));
 
+console.log(Transform.addValues(true, false)); 
