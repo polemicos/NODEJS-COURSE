@@ -17,6 +17,8 @@ function calculateDiscountedPrice(products, discount){
     });
     return discounted;
 }
+////////////////////
+
 
 function calculateTotalPrice(products){
     total = 0;
