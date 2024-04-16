@@ -23,9 +23,9 @@ const pipe = (...funcs) => (value) => {
     }, value);
 };
 
-const filterUniqueWords = pipe(findUnique(/\b(\w+)\b(?=.*\b(\1)\b)/g), alphabeticOrder);
+const filterUniqueWords = pipe(findUnique(/\b(\w+)\b(?=.*\b(\1)\b)/gi), alphabeticOrder);
 
-console.log(filterUniqueWords("banana apple zombie apple air grape grape string"));
+console.log(filterUniqueWords("banana apple zombie apple air grape grape string grape Apple"));
 //////////////////
 
 const getGrades = (students) => students.map(student => student.grade);
@@ -44,6 +44,6 @@ const students = [
     { name: "John", grade: 3.5 }
 ];
 
-console.log(getAverageGrade(students)); // Output: 4.166666666666667
+console.log(getAverageGrade(students));
 
 

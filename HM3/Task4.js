@@ -1,12 +1,11 @@
-const calculateFactorial = function(num){
-    if(num>=0){
-        if(num === 0){
-            return 1;
-        }
-        else{
-            return num * calculateFactorial(num - 1);
-        }
-    }else return "Try a positive number."
+const calculateFactorial = function(num, acc=1){
+    if(num<0){
+        return "Try a positive number."
+    }
+    if(num === 0){
+        return acc;
+    }
+    return calculateFactorial(num - 1, num * acc);
 };
 
 console.log(calculateFactorial(4));

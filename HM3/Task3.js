@@ -1,12 +1,15 @@
-const createCounter = (function () {
+const createCounter = function () {
     let counter = 0;
     return function () {counter++; return counter}
-})();
+};
 
-
-console.log(createCounter());
-console.log(createCounter());
-//////////////////////
+const counter1 = createCounter();
+const counter2 = createCounter();
+console.log(counter1());
+console.log(counter2());
+console.log(counter1());
+console.log(counter2());
+///////////////////////////
 
 const repeatFunction = function(func, num){
     if(num<0){
@@ -21,6 +24,6 @@ const repeatFunction = function(func, num){
     }
 }
 
-repeatFunction(createCounter,2);
-repeatFunction(createCounter,0);
+repeatFunction(createCounter(),2);
+repeatFunction(createCounter(),0);
 //repeatFunction(createCounter, -5);
