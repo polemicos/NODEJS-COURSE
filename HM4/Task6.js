@@ -6,7 +6,7 @@ const deepCloneObject = function(original){
 
     for(let key in original){
         if(original.hasOwnProperty(key)){
-            clone[key] = deepCloneObject(original[key]);
+            clone[key] = createImmutableObject(original[key]);
         }
     }
     return Object.assign(clone, original);
@@ -29,6 +29,6 @@ const person = {
 };
 
 
-const clone = deepCloneObject(person);
+const clone = createImmutableObject(person);
 console.log(person);
 console.log(clone);
