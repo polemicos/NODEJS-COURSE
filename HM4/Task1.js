@@ -25,8 +25,9 @@ Object.defineProperty(person, "updateInfo", {
 });
 
 Object.defineProperty(person, 'address', {
-    writable: false,
+    writable: true,
     enumerable: false,
+    configurable: false,
     value: {}
 })
 
