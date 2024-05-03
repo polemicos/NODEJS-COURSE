@@ -4,12 +4,11 @@ const highlightKeywords = function(static, ...tags){
         tags[0][i] = '<span class=\'highlight\'>' + tags[0][i] + '</span>';
     }
     for(let i=0; i<length;i++){
-        static = static.replace(new RegExp(`\\$\\{${i}\\}`, 'g'), tags[i]);
+        static = static.replace(new RegExp(`\\$\\{${i}\\}`, 'g'), tags[0][i]);
     }
 
     return static;
 }
-
 
 
 
