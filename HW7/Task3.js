@@ -1,14 +1,26 @@
-const chainPromises = async function(funcs) {
-    let res;
-    try{
-      for (const func of funcs) {
-        res = await func(res);
+const chainPromises = function(funcs) {
+  return new Promise((resolve, reject) => {
+    let res, index = 0;
+    const execute = function() {
+      if (index < funcs.length) {
+        const curr = funcs[index];
+        curr(res)
+          .then(chainRes => {
+            res = chainRes;
+            index++;
+            execute();
+          })
+          .catch(error => {
+            reject(error);
+          });
+      } else {
+        resolve(res);
       }
-      return res;
-    }catch (error) {
-      throw error;
-    }
-  };
+    };
+
+    execute();
+  });
+};
 
 
 
