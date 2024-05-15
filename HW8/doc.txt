@@ -1,0 +1,45 @@
+Overview:
+
+This system manages books, users, and orders for a virtual bookstore.
+Key Components:
+
+    Book:
+        Represents a book in the store.
+        Properties: title, author, ISBN, price, availability.
+        Methods: getInfo() to display book details.
+
+    User:
+        Represents a user of the system.
+        Properties: name, email, userId, cart.
+        Methods: placeOrder() to buy books, getUserInfo() to display user details.
+
+    Cart:
+        Stores books selected by a user for purchase.
+        Properties: user, books.
+        Methods: add(), remove(), getTotalPrice(), showCart().
+
+    Order:
+        Represents a user's purchase transaction.
+        Properties: user, orderId, orderedBooks, totalPrice.
+        Methods: chooseBooks(), getOrderDetails().
+
+    FictionBook:
+        Subclass of Book for fictional books.
+
+    NonFictionBook:
+        Subclass of Book for non-fictional books.
+
+    Helper:
+        Contains static search methods for books by title, author, or ISBN.
+
+Interaction:
+
+    Users browse books, add them to their cart, and place orders.
+    Each user has a separate cart and can place orders independently.
+    Orders store user's purchased books and total price.
+    Helper methods assist in searching for specific books.
+
+Encapsulation:
+
+    Each class encapsulates its properties and methods, ensuring data integrity and modularity.
+    Interaction between objects is achieved through method calls and object instantiation, maintaining encapsulation.
