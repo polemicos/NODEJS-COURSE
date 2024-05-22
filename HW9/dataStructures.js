@@ -1,21 +1,26 @@
 // Stack Class
 class Stack {
     constructor() {
+        // Initialize an empty array to store stack elements
         this.items = [];
     }
 
+    // Push an item onto the stack
     push(item) {
         this.items.push(item);
     }
 
+    // Check if the stack is empty
     isEmpty() {
         return this.items.length === 0;
     }
 
+    // Pop an item off the stack
     pop() {
         if (!this.isEmpty()) return this.items.pop();
     }
 
+    // Peek at the top item of the stack without removing it
     peek() {
         if (!this.isEmpty()) return this.items[this.items.length - 1];
     }
@@ -24,46 +29,57 @@ class Stack {
 // Queue Class
 class Queue {
     constructor() {
+        // Initialize an empty array to store queue elements
         this.items = [];
     }
 
+    // Enqueue an item to the back of the queue
     enqueue(item) {
         this.items.push(item);
     }
 
+    // Check if the queue is empty
     isEmpty() {
         return this.items.length === 0;
     }
 
+    // Dequeue an item from the front of the queue
     dequeue() {
         if (!this.isEmpty()) return this.items.shift();
     }
 
+    // Peek at the front item of the queue without removing it
     peek() {
         if (!this.isEmpty()) return this.items[0];
     }
 }
 
-// Binary Tree Classes
+// Binary Tree Node Class
 class Node {
     constructor(val) {
-        this.left = null;
-        this.right = null;
+        // Value of the node
         this.value = val;
+        // Left child node
+        this.left = null;
+        // Right child node
+        this.right = null;
     }
 
+    // Pre-order traversal: Node -> Left -> Right
     traversePreOrder() {
         console.log(this.value);
         if (this.left) this.left.traversePreOrder();
         if (this.right) this.right.traversePreOrder();
     }
 
+    // In-order traversal: Left -> Node -> Right
     traverseInOrder() {
         if (this.left) this.left.traverseInOrder();
         console.log(this.value);
         if (this.right) this.right.traverseInOrder();
     }
 
+    // Post-order traversal: Left -> Right -> Node
     traversePostOrder() {
         if (this.left) this.left.traversePostOrder();
         if (this.right) this.right.traversePostOrder();
@@ -71,11 +87,14 @@ class Node {
     }
 }
 
+// Binary Tree Class
 class BinaryTree {
     constructor() {
+        // Root of the binary tree
         this.root = null;
     }
 
+    // Insert a node into the binary tree
     insertNode(val) {
         const newNode = new Node(val);
 
@@ -92,8 +111,7 @@ class BinaryTree {
                     break;
                 }
                 currentNode = currentNode.left;
-            }
-            else {
+            } else {
                 if (currentNode.right === null) {
                     currentNode.right = newNode;
                     break;
@@ -103,6 +121,7 @@ class BinaryTree {
         }
     }
 
+    // Search for a value in the binary tree
     searchValue(val) {
         let currentNode = this.root;
 
@@ -117,18 +136,22 @@ class BinaryTree {
         return "No such value";
     }
 
+    // Traverse the binary tree in pre-order
     traversePreOrder() {
         if (this.root !== null) this.root.traversePreOrder();
     }
 
+    // Traverse the binary tree in in-order
     traverseInOrder() {
         if (this.root !== null) this.root.traverseInOrder();
     }
 
+    // Traverse the binary tree in post-order
     traversePostOrder() {
         if (this.root !== null) this.root.traversePostOrder();
     }
 
+    // Check if the binary tree is a binary search tree (BST)
     isBST() {
         let isBSTHelper = (node, min, max) => {
             if (node === null) return true;
@@ -143,15 +166,18 @@ class BinaryTree {
 // Graph Class
 class Graph {
     constructor() {
+        // Adjacency list to store the graph
         this.adjacencyList = {};
     }
 
+    // Add a vertex to the graph
     addVertex(vertex) {
         if (!this.adjacencyList[vertex]) {
             this.adjacencyList[vertex] = [];
         }
     }
 
+    // Add an edge between two vertices in the graph
     addEdge(vertex1, vertex2) {
         if (!this.adjacencyList[vertex1]) {
             this.addVertex(vertex1);
@@ -164,6 +190,7 @@ class Graph {
         this.adjacencyList[vertex2].push(vertex1);
     }
 
+    // Depth-First Search (DFS) starting from a vertex
     DFS(start) {
         const res = [];
         const were = {};
@@ -182,6 +209,7 @@ class Graph {
         return res;
     }
 
+    // Breadth-First Search (BFS) starting from a vertex
     BFS(start) {
         const queue = [start];
         const res = [];
@@ -203,6 +231,7 @@ class Graph {
         return res;
     }
 
+    // Dijkstra's algorithm to find the shortest path between two vertices
     dijkstra(start, end) {
         const distances = {};
         const previous = {};
@@ -250,19 +279,24 @@ class Graph {
     }
 }
 
-// LinkedList Class
+// LinkedList Element Class
 class ElemWithLink {
     constructor(val) {
+        // Value of the element
         this.value = val;
+        // Link to the next element
         this.nextElem = null;
     }
 }
 
+// LinkedList Class
 class LinkedList {
     constructor() {
+        // Head of the linked list
         this.head = null;
     }
 
+    // Insert an element at the end of the linked list
     insert(val) {
         let newElem = new ElemWithLink(val);
         if (this.head === null) this.head = newElem;
@@ -275,6 +309,7 @@ class LinkedList {
         }
     }
 
+    // Delete an element from the linked list
     delete(val) {
         if (this.head === null) return;
         if (this.head.value === val) {
@@ -283,8 +318,7 @@ class LinkedList {
         }
 
         let curr = this.head;
-        while (curr.nextElem !== null
-            && curr.nextElem.value !== val) {
+        while (curr.nextElem !== null && curr.nextElem.value !== val) {
             curr = curr.nextElem;
         }
         if (curr.nextElem !== null) {
@@ -292,6 +326,7 @@ class LinkedList {
         }
     }
 
+    // Search for an element in the linked list
     search(val) {
         let curr = this.head;
         while (curr !== null) {
@@ -304,6 +339,7 @@ class LinkedList {
         return "No such value";
     }
 
+    // Check if the linked list has a cycle
     hasCycle() {
         let slow = this.head;
         let fast = this.head;
@@ -323,11 +359,15 @@ class LinkedList {
 // MinMaxStack Class
 class MinMaxStack {
     constructor() {
+        // Stack to store original elements
         this.originalStack = new Stack();
+        // Stack to keep track of minimum values
         this.minStack = new Stack();
+        // Stack to keep track of maximum values
         this.maxStack = new Stack();
     }
 
+    // Push an item onto the stack
     push(item) {
         this.originalStack.push(item);
 
@@ -344,6 +384,7 @@ class MinMaxStack {
         }
     }
 
+    // Pop an item off the stack
     pop() {
         if (this.originalStack.isEmpty()) return null;
         this.minStack.pop();
@@ -351,31 +392,31 @@ class MinMaxStack {
         return this.originalStack.pop();
     }
 
+    // Get the minimum value in the stack
     getMin() {
         if (this.minStack.isEmpty()) return null;
         return this.minStack.peek();
     }
 
+    // Get the maximum value in the stack
     getMax() {
         if (this.maxStack.isEmpty()) return null;
         return this.maxStack.peek();
     }
 
+    // Peek at the top item of the stack without removing it
     peek() {
         if (this.originalStack.isEmpty()) return null;
         return this.originalStack.peek();
     }
 
+    // Check if the stack is empty
     isEmpty() {
         return this.originalStack.isEmpty();
     }
 }
 
-
-
-
-
-//test cases
+// Test cases
 
 // Stack Test
 let stack = new Stack();
